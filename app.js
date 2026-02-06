@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     
     initTabs();
+    initModal();
     loadAllData();
 });
 
@@ -192,13 +193,25 @@ function renderCalendar() {
                 ${dayEvents.map(job => {
                     const runTime = job.nextRuns.find(r => new Date(r).toDateString() === dateStr);
                     const time = new Date(runTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-                    return `<div class="calendar-event ${job.schedule.startsWith('cron') ? 'recurring' : ''}" title="${job.name}\n${job.schedule}">${time} ${job.name}</div>`;
+                    return `<div class="calendar-event ${job.schedule.startsWith('cron') ? 'recurring' : ''}" data-job-id="${job.id}" title="${job.name}">${time} ${job.name}</div>`;
                 }).join('')}
             </div>
         `;
     }
     
     grid.innerHTML = html;
+    
+    // Add click handlers to calendar events
+    grid.querySelectorAll('.calendar-event').forEach(eventEl => {
+        eventEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const jobId = eventEl.dataset.jobId;
+            const job = cronData.find(j => j.id === jobId);
+            if (job) {
+                openJobModal(job);
+            }
+        });
+    });
 }
 
 // Search
@@ -266,4 +279,205 @@ function escapeHtml(text) {
 
 function escapeRegex(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Modal Functions
+function initModal() {
+    const modal = document.getElementById('job-modal');
+    const closeBtn = document.getElementById('modal-close');
+    
+    // Close on X button
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+function openJobModal(job) {
+    const modal = document.getElementById('job-modal');
+    
+    // Populate modal fields
+    document.getElementById('modal-job-name').textContent = job.name;
+    document.getElementById('modal-schedule').textContent = parseScheduleToHuman(job.schedule);
+    document.getElementById('modal-description').textContent = getJobDescription(job);
+    
+    // Next run
+    if (job.nextRuns && job.nextRuns.length > 0) {
+        const nextRun = new Date(job.nextRuns[0]);
+        document.getElementById('modal-next-run').textContent = formatDateTime(nextRun);
+    } else {
+        document.getElementById('modal-next-run').textContent = 'Not scheduled';
+    }
+    
+    // Last run (if available)
+    const lastRunField = document.getElementById('modal-last-run-field');
+    if (job.lastRun) {
+        const lastRun = new Date(job.lastRun);
+        document.getElementById('modal-last-run').textContent = formatDateTime(lastRun);
+        lastRunField.style.display = 'flex';
+    } else {
+        lastRunField.style.display = 'none';
+    }
+    
+    // Status
+    const statusEl = document.getElementById('modal-status');
+    statusEl.textContent = job.status || 'unknown';
+    statusEl.className = 'modal-value modal-status ' + (job.status || 'pending');
+    
+    // Show modal
+    modal.classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('job-modal').classList.remove('active');
+}
+
+function parseScheduleToHuman(schedule) {
+    if (!schedule) return 'Unknown schedule';
+    
+    // Handle "every Xm" format
+    if (schedule.startsWith('every ')) {
+        const match = schedule.match(/every (\d+)([mhd])/);
+        if (match) {
+            const value = match[1];
+            const unit = match[2];
+            const unitNames = { m: 'minute', h: 'hour', d: 'day' };
+            return `Every ${value} ${unitNames[unit]}${value > 1 ? 's' : ''}`;
+        }
+        return schedule;
+    }
+    
+    // Handle "at YYYY-MM-DD HH:MMZ" format (one-time)
+    if (schedule.startsWith('at ')) {
+        const dateStr = schedule.replace('at ', '').replace('Z', '');
+        const date = new Date(dateStr + 'Z');
+        return `One-time: ${formatDateTime(date)}`;
+    }
+    
+    // Handle cron format
+    if (schedule.startsWith('cron ')) {
+        const cronPart = schedule.replace('cron ', '').split(' @ ')[0];
+        return parseCronToHuman(cronPart);
+    }
+    
+    return schedule;
+}
+
+function parseCronToHuman(cron) {
+    const parts = cron.trim().split(/\s+/);
+    if (parts.length < 5) return cron;
+    
+    const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;
+    
+    // Every X minutes
+    if (minute.startsWith('*/') && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {
+        const interval = minute.replace('*/', '');
+        return `Every ${interval} minutes`;
+    }
+    
+    // Range of hours with minute interval (e.g., */30 6-23)
+    if (minute.startsWith('*/') && hour.includes('-')) {
+        const interval = minute.replace('*/', '');
+        const [startHour, endHour] = hour.split('-').map(h => parseInt(h));
+        const startTime = formatHour(startHour);
+        const endTime = formatHour(endHour);
+        return `Every ${interval} min from ${startTime} to ${endTime}`;
+    }
+    
+    // Hourly
+    if (minute !== '*' && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {
+        return `Every hour at :${minute.padStart(2, '0')}`;
+    }
+    
+    // Daily at specific time
+    if (minute !== '*' && hour !== '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {
+        const time = formatHourMinute(parseInt(hour), parseInt(minute));
+        return `Every day at ${time}`;
+    }
+    
+    // Multiple times per day
+    if (minute !== '*' && hour.includes(',') && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {
+        const hours = hour.split(',').map(h => formatHourMinute(parseInt(h), parseInt(minute)));
+        return `Daily at ${hours.join(' and ')}`;
+    }
+    
+    // Weekly on specific day
+    if (minute !== '*' && hour !== '*' && dayOfMonth === '*' && month === '*' && dayOfWeek !== '*') {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const time = formatHourMinute(parseInt(hour), parseInt(minute));
+        const day = days[parseInt(dayOfWeek)] || dayOfWeek;
+        return `Every ${day} at ${time}`;
+    }
+    
+    return `Cron: ${cron}`;
+}
+
+function formatHour(h) {
+    const hour = parseInt(h);
+    if (hour === 0) return '12 AM';
+    if (hour === 12) return '12 PM';
+    if (hour < 12) return `${hour} AM`;
+    return `${hour - 12} PM`;
+}
+
+function formatHourMinute(h, m) {
+    const hour = h % 12 || 12;
+    const ampm = h < 12 ? 'AM' : 'PM';
+    const min = m.toString().padStart(2, '0');
+    return `${hour}:${min} ${ampm}`;
+}
+
+function formatDateTime(date) {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const isToday = date.toDateString() === now.toDateString();
+    const isTomorrow = date.toDateString() === tomorrow.toDateString();
+    
+    const time = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    
+    if (isToday) return `Today at ${time}`;
+    if (isTomorrow) return `Tomorrow at ${time}`;
+    
+    const dateStr = date.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    return `${dateStr} at ${time}`;
+}
+
+function getJobDescription(job) {
+    // Generate a description based on job name if not provided
+    if (job.description) return job.description;
+    
+    const name = job.name.toLowerCase();
+    
+    // Common patterns
+    if (name.includes('news brief')) return 'Fetches and delivers a curated news summary';
+    if (name.includes('inbox') || name.includes('email')) return 'Monitors and processes incoming emails';
+    if (name.includes('watchdog')) return 'Health check and monitoring service';
+    if (name.includes('sync') || name.includes('→')) return 'Syncs data between integrated services';
+    if (name.includes('scraper')) return 'Collects and processes web content';
+    if (name.includes('newsletter')) return 'Processes and organizes newsletter content';
+    if (name.includes('competitor')) return 'Monitors competitor activity and updates';
+    if (name.includes('healthcheck')) return 'System health and status verification';
+    if (name.includes('refresh') || name.includes('update')) return 'Refreshes cached data and updates';
+    if (name.includes('cozy') || name.includes('light')) return 'Smart home automation task';
+    if (name.includes('pay') || name.includes('invoice')) return 'Automated payment processing';
+    if (name.includes('security')) return 'Security audit and compliance check';
+    
+    return 'Scheduled automation task';
 }

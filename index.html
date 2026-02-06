@@ -407,6 +407,126 @@
             text-transform: uppercase;
         }
         
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow: auto;
+            transform: scale(0.9);
+            transition: transform 0.2s;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--text);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .modal-field:last-child {
+            margin-bottom: 0;
+        }
+        
+        .modal-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .modal-value {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        
+        .modal-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            width: fit-content;
+        }
+        
+        .modal-status.ok {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .modal-status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+        
+        .modal-status.pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
         @media (max-width: 768px) {
             .header, .tabs, .main {
                 padding-left: 1rem;
@@ -427,6 +547,11 @@
                 font-size: 0.7rem;
                 color: var(--text-muted);
                 margin-bottom: 0.25rem;
+            }
+            
+            .modal {
+                width: 95%;
+                margin: 1rem;
             }
         }
     </style>
@@ -498,6 +623,38 @@
         </section>
     </main>
     
+    <!-- Job Details Modal -->
+    <div class="modal-overlay" id="job-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-job-name">Job Name</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-field">
+                    <span class="modal-label">📅 Schedule</span>
+                    <span class="modal-value" id="modal-schedule">Every day at 8:30 AM</span>
+                </div>
+                <div class="modal-field">
+                    <span class="modal-label">📝 Description</span>
+                    <span class="modal-value" id="modal-description">What this job does</span>
+                </div>
+                <div class="modal-field">
+                    <span class="modal-label">⏭️ Next Run</span>
+                    <span class="modal-value" id="modal-next-run">Tomorrow at 8:30 AM</span>
+                </div>
+                <div class="modal-field" id="modal-last-run-field">
+                    <span class="modal-label">⏮️ Last Run</span>
+                    <span class="modal-value" id="modal-last-run">Yesterday at 8:30 AM</span>
+                </div>
+                <div class="modal-field">
+                    <span class="modal-label">🔖 Status</span>
+                    <span class="modal-value modal-status" id="modal-status">ok</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
