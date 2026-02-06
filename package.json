@@ -1,0 +1,12 @@
+{
+  "name": "openclaw-dashboard",
+  "version": "1.0.0",
+  "description": "Mission Control dashboard for OpenClaw",
+  "scripts": {
+    "generate": "python3 generate_data.py",
+    "dev": "python3 -m http.server 8080",
+    "build": "python3 generate_data.py"
+  },
+  "author": "Charlie Marechal",
+  "license": "MIT"
+}
