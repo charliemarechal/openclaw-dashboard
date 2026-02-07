@@ -1,29 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Control - OpenClaw</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <style>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Mission Control&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap&quot;&gt;
+    &lt;style&gt;
+        :root {
+          --bg: #ffffff;
+          --bg-secondary: #f5f5f7;
+          --bg-tertiary: #e8e8ed;
+          --text: #1d1d1f;
+          --text-secondary: #86868b;
+          --text-tertiary: #aeaeb2;
+          --separator: rgba(0,0,0,0.06);
+          --card-bg: #f5f5f7;
+          --card-hover: #ebebed;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --bg: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-tertiary: #2c2c2e;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #636366;
+            --separator: rgba(255,255,255,0.08);
+            --card-bg: #1c1c1e;
+            --card-hover: #2c2c2e;
+          }
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        :root {
-            --bg: #0f172a;
-            --bg-card: #1e293b;
-            --bg-card-hover: #334155;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --border: #334155;
+        html {
+          -webkit-font-smoothing: antialiased;
+          -webkit-text-size-adjust: 100%;
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.5;
@@ -31,8 +48,7 @@
         }
         
         .header {
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg) 100%);
-            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -41,49 +57,31 @@
             gap: 1rem;
         }
         
-        .header h1 {
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .header h1 .logo {
-            font-size: 1.75rem;
-        }
-        
         .header-meta {
             font-size: 0.875rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .tabs {
             display: flex;
             gap: 0.5rem;
             padding: 1rem 2rem 0;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-card);
+            background: var(--bg-secondary);
         }
         
         .tab {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -1px;
-            transition: all 0.2s;
+          padding: 8px 16px;
+          border-radius: 9999px;
+          border: none;
+          background: transparent;
+          color: var(--text-secondary);
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
         }
-        
-        .tab:hover {
-            color: var(--text);
-        }
-        
         .tab.active {
-            color: var(--accent-light);
-            border-bottom-color: var(--accent);
+          background: var(--text);
+          color: var(--bg);
         }
         
         .tab-icon {
@@ -116,6 +114,7 @@
         
         .activity-header h2 {
             font-size: 1.25rem;
+            font-weight: 600;
         }
         
         .filters {
@@ -126,18 +125,18 @@
         
         .filter-btn {
             padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            border: none;
             border-radius: 6px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.2s;
+            font-weight: 500;
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: var(--card-hover);
             color: var(--text);
         }
         
@@ -148,15 +147,15 @@
         }
         
         .activity-item {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 1rem 1.25rem;
             transition: background-color 0.2s;
         }
         
         .activity-item:hover {
-            background-color: var(--bg-card-hover);
+            background-color: var(--card-hover);
         }
         
         .activity-meta {
@@ -170,20 +169,17 @@
         
         .activity-time {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .activity-type {
             font-size: 0.7rem;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
-            background: var(--bg);
-            color: var(--accent-light);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-weight: 500;
         }
-        
-        .activity-type.tool { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-        .activity-type.message { background: rgba(99, 102, 241, 0.2); color: var(--accent-light); }
-        .activity-type.cron { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
         
         .activity-content {
             font-size: 0.9rem;
@@ -192,10 +188,12 @@
         }
         
         .activity-content code {
-            background: var(--bg);
+            background: var(--bg-secondary);
             padding: 0.15rem 0.4rem;
             border-radius: 4px;
             font-size: 0.85em;
+            color: var(--text);
+            font-family: 'SF Mono', Consolas, monospace;
         }
         
         /* Calendar Styles */
@@ -213,34 +211,35 @@
         
         .calendar-nav button {
             padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            border: none;
             border-radius: 6px;
             color: var(--text);
             cursor: pointer;
             transition: all 0.2s;
+            font-weight: 500;
         }
         
         .calendar-nav button:hover {
-            background: var(--bg-card-hover);
+            background: var(--card-hover);
         }
         
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 1px;
-            background: var(--border);
-            border-radius: 8px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
             overflow: hidden;
         }
         
         .calendar-day-header {
-            background: var(--bg-card);
+            background: var(--card-bg);
             padding: 0.75rem;
             text-align: center;
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-transform: uppercase;
         }
         
@@ -251,18 +250,18 @@
         }
         
         .calendar-day.today {
-            background: rgba(99, 102, 241, 0.1);
+            background: var(--bg-secondary);
         }
         
         .calendar-day-number {
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .calendar-day.today .calendar-day-number {
-            color: var(--accent-light);
+            color: var(--text);
         }
         
         .calendar-event {
@@ -270,22 +269,19 @@
             padding: 0.25rem 0.5rem;
             margin-bottom: 0.25rem;
             border-radius: 4px;
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--accent-light);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             cursor: pointer;
             transition: background 0.2s;
+            font-weight: 500;
         }
         
         .calendar-event:hover {
-            background: rgba(99, 102, 241, 0.4);
-        }
-        
-        .calendar-event.recurring {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
+            background: var(--card-hover);
+            color: var(--text);
         }
         
         /* Search Styles */
@@ -300,17 +296,17 @@
         .search-input {
             width: 100%;
             padding: 1rem 1rem 1rem 3rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 12px;
             color: var(--text);
             font-size: 1rem;
-            transition: border-color 0.2s;
+            transition: background-color 0.2s;
         }
         
         .search-input:focus {
             outline: none;
-            border-color: var(--accent);
+            background: var(--card-hover);
         }
         
         .search-icon {
@@ -318,7 +314,7 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .search-results {
@@ -328,15 +324,15 @@
         }
         
         .search-result {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 1rem;
             transition: background-color 0.2s;
         }
         
         .search-result:hover {
-            background-color: var(--bg-card-hover);
+            background-color: var(--card-hover);
         }
         
         .search-result-header {
@@ -348,25 +344,27 @@
         
         .search-result-file {
             font-size: 0.8rem;
-            color: var(--accent-light);
+            color: var(--text-secondary);
         }
         
         .search-result-type {
             font-size: 0.7rem;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
-            background: var(--bg);
-            color: var(--text-muted);
+            background: var(--bg-secondary);
+            color: var(--text-tertiary);
+            font-weight: 500;
         }
         
         .search-result-content {
             font-size: 0.9rem;
             line-height: 1.6;
+            color: var(--text);
         }
         
         .search-result-content mark {
-            background: rgba(245, 158, 11, 0.3);
-            color: var(--warning);
+            background: var(--bg-secondary);
+            color: var(--text);
             padding: 0 0.2rem;
             border-radius: 2px;
         }
@@ -374,13 +372,13 @@
         .loading {
             text-align: center;
             padding: 3rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .empty-state {
             text-align: center;
             padding: 3rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
         
         .stats-bar {
@@ -398,13 +396,15 @@
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--accent-light);
+            color: var(--text);
+            letter-spacing: -0.02em;
         }
         
         .stat-label {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         /* Modal Styles */
@@ -414,7 +414,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
@@ -431,7 +431,7 @@
         }
         
         .modal {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: none;
             border-radius: 12px;
             width: 90%;
@@ -451,7 +451,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
         }
         
         .modal-title {
@@ -463,16 +463,18 @@
         .modal-close {
             background: none;
             border: none;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0;
             line-height: 1;
             transition: color 0.2s;
+            border-radius: 9999px;
         }
         
         .modal-close:hover {
             color: var(--text);
+            background: var(--bg-secondary);
         }
         
         .modal-body {
@@ -492,9 +494,12 @@
         
         .modal-label {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .modal-value {
@@ -509,31 +514,19 @@
             border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 600;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
             width: fit-content;
-        }
-        
-        .modal-status.ok {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-        }
-        
-        .modal-status.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: var(--danger);
-        }
-        
-        .modal-status.pending {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--warning);
         }
         
         .modal-script {
             font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 0.85rem;
-            background: var(--bg);
+            background: var(--bg-secondary);
             padding: 0.5rem 0.75rem;
             border-radius: 6px;
             word-break: break-all;
+            color: var(--text);
         }
 
         @media (max-width: 768px) {
@@ -554,7 +547,7 @@
                 content: attr(data-day);
                 display: block;
                 font-size: 0.7rem;
-                color: var(--text-muted);
+                color: var(--text-secondary);
                 margin-bottom: 0.25rem;
             }
             
@@ -563,115 +556,114 @@
                 margin: 1rem;
             }
         }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <h1><span class="logo">🔮</span> Mission Control</h1>
-        <div class="header-meta">
-            OpenClaw Dashboard • <span id="current-time"></span>
-        </div>
-    </header>
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class=&quot;header&quot;&gt;
+        &lt;div class=&quot;header-meta&quot;&gt;
+            &lt;span id=&quot;current-time&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
     
-    <nav class="tabs">
-        <button class="tab active" data-tab="activity">
-            <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><path d="M3 17h13M17 17v-5a2 2 0 0 1 2-2h3"/></svg></span>Activity Feed
-        </button>
-        <button class="tab" data-tab="calendar">
-            <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y2="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>Calendar
-        </button>
-        <button class="tab" data-tab="search">
-            <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>Global Search
-        </button>
-    </nav>
+    &lt;nav class=&quot;tabs&quot;&gt;
+        &lt;button class=&quot;tab active&quot; data-tab=&quot;activity&quot;&gt;
+            &lt;span class=&quot;tab-icon&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;path d=&quot;M3 17h13M17 17v-5a2 2 0 0 1 2-2h3&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Activity Feed
+        &lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;calendar&quot;&gt;
+            &lt;span class=&quot;tab-icon&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot; ry=&quot;2&quot;/&gt;&lt;line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;/&gt;&lt;line x1=&quot;8&quot; y2=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;/&gt;&lt;line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Calendar
+        &lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;search&quot;&gt;
+            &lt;span class=&quot;tab-icon&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;8&quot;/&gt;&lt;path d=&quot;m21 21-4.35-4.35&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;Global Search
+        &lt;/button&gt;
+    &lt;/nav&gt;
     
-    <main class="main">
-        <!-- Activity Feed -->
-        <section id="activity" class="tab-content active">
-            <div class="activity-header">
-                <h2>Recent Activity</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="tool">Tool Calls</button>
-                    <button class="filter-btn" data-filter="message">Messages</button>
-                    <button class="filter-btn" data-filter="cron">Cron Jobs</button>
-                </div>
-            </div>
-            <div class="stats-bar" id="activity-stats"></div>
-            <div class="activity-list" id="activity-list">
-                <div class="loading">Loading activity data...</div>
-            </div>
-        </section>
+    &lt;main class=&quot;main&quot;&gt;
+        &lt;!-- Activity Feed --&gt;
+        &lt;section id=&quot;activity&quot; class=&quot;tab-content active&quot;&gt;
+            &lt;div class=&quot;activity-header&quot;&gt;
+                &lt;h2&gt;Recent Activity&lt;/h2&gt;
+                &lt;div class=&quot;filters&quot;&gt;
+                    &lt;button class=&quot;filter-btn active&quot; data-filter=&quot;all&quot;&gt;All&lt;/button&gt;
+                    &lt;button class=&quot;filter-btn&quot; data-filter=&quot;tool&quot;&gt;Tool Calls&lt;/button&gt;
+                    &lt;button class=&quot;filter-btn&quot; data-filter=&quot;message&quot;&gt;Messages&lt;/button&gt;
+                    &lt;button class=&quot;filter-btn&quot; data-filter=&quot;cron&quot;&gt;Cron Jobs&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;stats-bar&quot; id=&quot;activity-stats&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;activity-list&quot; id=&quot;activity-list&quot;&gt;
+                &lt;div class=&quot;loading&quot;&gt;Loading activity data...&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
         
-        <!-- Calendar -->
-        <section id="calendar" class="tab-content">
-            <div class="calendar-header">
-                <h2 id="calendar-title">February 2026</h2>
-                <div class="calendar-nav">
-                    <button id="prev-week">← Prev</button>
-                    <button id="today-btn">Today</button>
-                    <button id="next-week">Next →</button>
-                </div>
-            </div>
-            <div class="calendar-grid" id="calendar-grid">
-                <div class="loading" style="grid-column: span 7;">Loading calendar...</div>
-            </div>
-        </section>
+        &lt;!-- Calendar --&gt;
+        &lt;section id=&quot;calendar&quot; class=&quot;tab-content&quot;&gt;
+            &lt;div class=&quot;calendar-header&quot;&gt;
+                &lt;h2 id=&quot;calendar-title&quot;&gt;February 2026&lt;/h2&gt;
+                &lt;div class=&quot;calendar-nav&quot;&gt;
+                    &lt;button id=&quot;prev-week&quot;&gt;← Prev&lt;/button&gt;
+                    &lt;button id=&quot;today-btn&quot;&gt;Today&lt;/button&gt;
+                    &lt;button id=&quot;next-week&quot;&gt;Next →&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;calendar-grid&quot; id=&quot;calendar-grid&quot;&gt;
+                &lt;div class=&quot;loading&quot; style=&quot;grid-column: span 7;&quot;&gt;Loading calendar...&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
         
-        <!-- Global Search -->
-        <section id="search" class="tab-content">
-            <div class="search-container">
-                <div class="search-input-wrapper">
-                    <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
-                    <input type="text" class="search-input" id="search-input" placeholder="Search memory, sessions, and notes...">
-                </div>
-            </div>
-            <div class="search-results" id="search-results">
-                <div class="empty-state">Enter a search query to find content across memory and sessions.</div>
-            </div>
-        </section>
-    </main>
+        &lt;!-- Global Search --&gt;
+        &lt;section id=&quot;search&quot; class=&quot;tab-content&quot;&gt;
+            &lt;div class=&quot;search-container&quot;&gt;
+                &lt;div class=&quot;search-input-wrapper&quot;&gt;
+                    &lt;span class=&quot;search-icon&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;8&quot;/&gt;&lt;path d=&quot;m21 21-4.35-4.35&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;search-input&quot; id=&quot;search-input&quot; placeholder=&quot;Search memory, sessions, and notes...&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;search-results&quot; id=&quot;search-results&quot;&gt;
+                &lt;div class=&quot;empty-state&quot;&gt;Enter a search query to find content across memory and sessions.&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
     
-    <!-- Job Details Modal -->
-    <div class="modal-overlay" id="job-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-job-name">Job Name</h3>
-                <button class="modal-close" id="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y2="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Schedule</span>
-                    <span class="modal-value" id="modal-schedule">Every day at 8:30 AM</span>
-                </div>
-                <div class="modal-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Description</span>
-                    <span class="modal-value" id="modal-description">What this job does</span>
-                </div>
-                <div class="modal-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 16 14"/></svg> Next Run</span>
-                    <span class="modal-value" id="modal-next-run">Tomorrow at 8:30 AM</span>
-                </div>
-                <div class="modal-field" id="modal-last-run-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/></svg> Last Run</span>
-                    <span class="modal-value" id="modal-last-run">Yesterday at 8:30 AM</span>
-                </div>
-                <div class="modal-field" id="modal-handler-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="8" r="4"/><path d="M21 21v-4a4 4 0 0 0-3-3.87"/></svg> Handled by</span>
-                    <span class="modal-value" id="modal-handler">Model name</span>
-                </div>
-                <div class="modal-field" id="modal-script-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg> Script</span>
-                    <span class="modal-value modal-script" id="modal-script">/path/to/script.py</span>
-                </div>
-                <div class="modal-field">
-                    <span class="modal-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;flex-shrink:0;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Status</span>
-                    <span class="modal-value modal-status" id="modal-status">ok</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    &lt;!-- Job Details Modal --&gt;
+    &lt;div class=&quot;modal-overlay&quot; id=&quot;job-modal&quot;&gt;
+        &lt;div class=&quot;modal&quot;&gt;
+            &lt;div class=&quot;modal-header&quot;&gt;
+                &lt;h3 class=&quot;modal-title&quot; id=&quot;modal-job-name&quot;&gt;Job Name&lt;/h3&gt;
+                &lt;button class=&quot;modal-close&quot; id=&quot;modal-close&quot;&gt;&amp;times;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-body&quot;&gt;
+                &lt;div class=&quot;modal-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot; ry=&quot;2&quot;/&gt;&lt;line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;/&gt;&lt;line x1=&quot;8&quot; y2=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;/&gt;&lt;line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;/&gt;&lt;/svg&gt; Schedule&lt;/span&gt;
+                    &lt;span class=&quot;modal-value&quot; id=&quot;modal-schedule&quot;&gt;Every day at 8:30 AM&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;path d=&quot;M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z&quot;/&gt;&lt;polyline points=&quot;14 2 14 8 20 8&quot;/&gt;&lt;/svg&gt; Description&lt;/span&gt;
+                    &lt;span class=&quot;modal-value&quot; id=&quot;modal-description&quot;&gt;What this job does&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;&lt;polyline points=&quot;12 8 12 12 16 14&quot;/&gt;&lt;/svg&gt; Next Run&lt;/span&gt;
+                    &lt;span class=&quot;modal-value&quot; id=&quot;modal-next-run&quot;&gt;Tomorrow at 8:30 AM&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot; id=&quot;modal-last-run-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/&gt;&lt;polyline points=&quot;12 8 8 12 12 16&quot;/&gt;&lt;/svg&gt; Last Run&lt;/span&gt;
+                    &lt;span class=&quot;modal-value&quot; id=&quot;modal-last-run&quot;&gt;Yesterday at 8:30 AM&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot; id=&quot;modal-handler-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot; ry=&quot;2&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot;/&gt;&lt;path d=&quot;M21 21v-4a4 4 0 0 0-3-3.87&quot;/&gt;&lt;/svg&gt; Handled by&lt;/span&gt;
+                    &lt;span class=&quot;modal-value&quot; id=&quot;modal-handler&quot;&gt;Model name&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot; id=&quot;modal-script-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;polyline points=&quot;4 7 4 4 20 4 20 7&quot;/&gt;&lt;line x1=&quot;9&quot; y1=&quot;20&quot; x2=&quot;15&quot; y2=&quot;20&quot;/&gt;&lt;line x1=&quot;12&quot; y1=&quot;4&quot; x2=&quot;12&quot; y2=&quot;20&quot;/&gt;&lt;/svg&gt; Script&lt;/span&gt;
+                    &lt;span class=&quot;modal-value modal-script&quot; id=&quot;modal-script&quot;&gt;/path/to/script.py&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;modal-field&quot;&gt;
+                    &lt;span class=&quot;modal-label&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;width:1em;height:1em;flex-shrink:0;&quot;&gt;&lt;path d=&quot;M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;7&quot; r=&quot;4&quot;/&gt;&lt;/svg&gt; Status&lt;/span&gt;
+                    &lt;span class=&quot;modal-value modal-status&quot; id=&quot;modal-status&quot;&gt;ok&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 
-    <script src="app.js"></script>
-</body>
-</html>
+    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
