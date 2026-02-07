@@ -109,7 +109,7 @@ def get_cron_jobs() -> List[Dict[str, Any]]:
             ['openclaw', 'cron', 'list', '--json'],
             capture_output=True,
             text=True,
-            timeout=10
+            timeout=30
         )
         if result.returncode == 0:
             data = json.loads(result.stdout)
@@ -175,7 +175,7 @@ def get_cron_jobs() -> List[Dict[str, Any]]:
                 ['openclaw', 'cron', 'list'],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=30
             )
             if result.returncode == 0:
                 return parse_cron_text(result.stdout)
