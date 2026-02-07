@@ -193,7 +193,10 @@ function renderCalendar() {
                 ${dayEvents.map(job => {
                     const runTime = job.nextRuns.find(r => new Date(r).toDateString() === dateStr);
                     const time = new Date(runTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-                    return `<div class="calendar-event ${job.schedule.startsWith('cron') ? 'recurring' : ''}" data-job-id="${job.id}" title="${job.name}">${time} ${job.name}</div>`;
+                    const isRecurring = (typeof job.schedule === 'object') 
+                        ? (job.schedule.kind === 'cron' || job.schedule.kind === 'every')
+                        : (job.schedule && job.schedule.startsWith('cron'));
+                    return `<div class="calendar-event ${isRecurring ? 'recurring' : ''}" data-job-id="${job.id}" title="${job.name}">${time} ${job.name}</div>`;
                 }).join('')}
             </div>
         `;
@@ -368,6 +371,43 @@ function closeModal() {
 function parseScheduleToHuman(schedule) {
     if (!schedule) return 'Unknown schedule';
     
+    // Handle new object format: { kind: "cron"|"every"|"at", ... }
+    if (typeof schedule === 'object') {
+        const kind = schedule.kind;
+        
+        if (kind === 'every') {
+            const everyMs = schedule.everyMs || 0;
+            if (everyMs >= 86400000) {
+                const days = Math.round(everyMs / 86400000);
+                return `Every ${days} day${days > 1 ? 's' : ''}`;
+            } else if (everyMs >= 3600000) {
+                const hours = Math.round(everyMs / 3600000);
+                return `Every ${hours} hour${hours > 1 ? 's' : ''}`;
+            } else {
+                const mins = Math.round(everyMs / 60000);
+                return `Every ${mins} minute${mins > 1 ? 's' : ''}`;
+            }
+        }
+        
+        if (kind === 'at') {
+            const atStr = schedule.at;
+            if (atStr) {
+                const date = new Date(atStr);
+                return `One-time: ${formatDateTime(date)}`;
+            }
+            return 'One-time job';
+        }
+        
+        if (kind === 'cron') {
+            const expr = schedule.expr || '';
+            const tz = schedule.tz ? ` (${schedule.tz})` : '';
+            return parseCronToHuman(expr) + tz;
+        }
+        
+        return JSON.stringify(schedule);
+    }
+    
+    // Handle legacy string formats
     // Handle "every Xm" format
     if (schedule.startsWith('every ')) {
         const match = schedule.match(/every (\d+)([mhd])/);

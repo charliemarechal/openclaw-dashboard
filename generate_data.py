@@ -119,7 +119,16 @@ def get_cron_jobs() -> List[Dict[str, Any]]:
             # Calculate next run times for the next 14 days
             processed = []
             for job in jobs:
-                next_runs = calculate_next_runs(job.get('schedule', ''), job.get('next', ''))
+                schedule = job.get('schedule', {})
+                state = job.get('state', {})
+                
+                # Get next run from state.nextRunAtMs
+                next_runs = []
+                next_run_ms = state.get('nextRunAtMs')
+                if next_run_ms:
+                    next_run_time = datetime.fromtimestamp(next_run_ms / 1000)
+                    next_runs = calculate_next_runs_from_schedule(schedule, next_run_time)
+                
                 # Extract model and script from payload
                 payload = job.get('payload', {})
                 model = payload.get('model', '')
@@ -140,12 +149,18 @@ def get_cron_jobs() -> List[Dict[str, Any]]:
                         if sh_match:
                             script = sh_match.group(1)
                 
+                # Get last run from state
+                last_run = ''
+                last_run_ms = state.get('lastRunAtMs')
+                if last_run_ms:
+                    last_run = datetime.fromtimestamp(last_run_ms / 1000).isoformat()
+                
                 processed.append({
                     'id': job.get('id', ''),
                     'name': job.get('name', 'Unnamed'),
-                    'schedule': job.get('schedule', ''),
-                    'status': job.get('status', 'unknown'),
-                    'lastRun': job.get('last', ''),
+                    'schedule': schedule,
+                    'status': state.get('lastStatus', 'unknown'),
+                    'lastRun': last_run,
                     'nextRuns': next_runs,
                     'model': model,
                     'script': script
@@ -239,8 +254,96 @@ def parse_cron_text(output: str) -> List[Dict[str, Any]]:
     return jobs
 
 
+def calculate_next_runs_from_schedule(schedule: Dict[str, Any], first_run: datetime) -> List[str]:
+    """Calculate next run times for a job over the next 14 days based on schedule object."""
+    runs = []
+    now = datetime.now()
+    end_date = now + timedelta(days=14)
+    
+    if not schedule:
+        return runs
+    
+    kind = schedule.get('kind', '')
+    
+    if kind == 'at':
+        # One-time job, just add the single run if it's in range
+        at_str = schedule.get('at', '')
+        if at_str:
+            try:
+                # Parse ISO format like "2026-02-10T02:00:00.000Z"
+                at_time = datetime.fromisoformat(at_str.replace('Z', '+00:00').replace('+00:00', ''))
+                if now <= at_time <= end_date:
+                    runs.append(at_time.isoformat())
+            except:
+                pass
+        return runs
+    
+    elif kind == 'every':
+        # Every X milliseconds
+        every_ms = schedule.get('everyMs', 0)
+        if every_ms > 0:
+            interval = timedelta(milliseconds=every_ms)
+            current = first_run
+            while current < end_date and len(runs) < 100:
+                if current >= now:
+                    runs.append(current.isoformat())
+                current += interval
+        return runs
+    
+    elif kind == 'cron':
+        # Cron expression - estimate interval from expression
+        expr = schedule.get('expr', '')
+        if not expr:
+            return runs
+        
+        parts = expr.split()
+        if len(parts) < 5:
+            return runs
+        
+        minute, hour, day_of_month, month, day_of_week = parts[:5]
+        
+        # Determine interval based on cron pattern
+        interval = None
+        
+        # Every X minutes pattern: */X * * * *
+        if minute.startswith('*/') and hour == '*':
+            mins = int(minute[2:])
+            interval = timedelta(minutes=mins)
+        # Minute interval with hour range: */X H1-H2 * * *
+        elif minute.startswith('*/') and '-' in hour:
+            mins = int(minute[2:])
+            interval = timedelta(minutes=mins)
+        # Every hour: 0 * * * * or X * * * *
+        elif hour == '*' and not minute.startswith('*/'):
+            interval = timedelta(hours=1)
+        # Daily: X Y * * *
+        elif day_of_month == '*' and month == '*' and day_of_week == '*':
+            if ',' in hour:
+                # Multiple times per day - use first run and repeat daily
+                interval = timedelta(days=1)
+            else:
+                interval = timedelta(days=1)
+        # Weekly: X Y * * Z
+        elif day_of_month == '*' and month == '*' and day_of_week != '*':
+            interval = timedelta(weeks=1)
+        else:
+            # Default to daily
+            interval = timedelta(days=1)
+        
+        # Generate runs
+        current = first_run
+        while current < end_date and len(runs) < 100:
+            if current >= now:
+                runs.append(current.isoformat())
+            current += interval
+        
+        return runs
+    
+    return runs
+
+
 def calculate_next_runs(schedule: str, next_run: str) -> List[str]:
-    """Calculate next run times for a job over the next 14 days."""
+    """Legacy: Calculate next run times for a job over the next 14 days."""
     runs = []
     
     if next_run and next_run != '-':
