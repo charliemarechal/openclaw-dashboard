@@ -112,19 +112,43 @@ def get_cron_jobs() -> List[Dict[str, Any]]:
             timeout=10
         )
         if result.returncode == 0:
-            jobs = json.loads(result.stdout)
+            data = json.loads(result.stdout)
+            # Handle both list and dict with 'jobs' key
+            jobs = data.get('jobs', data) if isinstance(data, dict) else data
             
             # Calculate next run times for the next 14 days
             processed = []
             for job in jobs:
                 next_runs = calculate_next_runs(job.get('schedule', ''), job.get('next', ''))
+                # Extract model and script from payload
+                payload = job.get('payload', {})
+                model = payload.get('model', '')
+                
+                # Try to extract script path from message
+                script = ''
+                message = payload.get('message', '')
+                if message:
+                    # Look for common script patterns
+                    import re as re_mod
+                    # Match python3 /path/to/script.py or python3 ~/path/to/script.py
+                    py_match = re_mod.search(r'python3?\s+(~?/[^\s]+\.py)', message)
+                    if py_match:
+                        script = py_match.group(1)
+                    else:
+                        # Match shell scripts
+                        sh_match = re_mod.search(r'(?:bash\s+|sh\s+|execute\s+|run\s+)?(~?/[^\s]+\.sh)', message)
+                        if sh_match:
+                            script = sh_match.group(1)
+                
                 processed.append({
                     'id': job.get('id', ''),
                     'name': job.get('name', 'Unnamed'),
                     'schedule': job.get('schedule', ''),
                     'status': job.get('status', 'unknown'),
                     'lastRun': job.get('last', ''),
-                    'nextRuns': next_runs
+                    'nextRuns': next_runs,
+                    'model': model,
+                    'script': script
                 })
             return processed
     except Exception as e:

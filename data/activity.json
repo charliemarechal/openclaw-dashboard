@@ -1,6 +1,90 @@
 [
   {
     "type": "message",
+    "content": "Skruyu's adding model/script info to the modal. \ud83d\udd27",
+    "timestamp": "2026-02-07T00:00:49.479Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "tool",
+    "content": "sessions_spawn",
+    "timestamp": "2026-02-07T00:00:46.463Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "**Handled by: Flint (Opus)** \u2014 delegating to Skruyu",
+    "timestamp": "2026-02-07T00:00:46.463Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +47s 2026-02-06 19:00 EST] Add also which model or script is in charge of each\n[message_id: 4658]",
+    "timestamp": "2026-02-07T00:00:36.646Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "**Handled by: Skruyu (Grok)** \u2713\n\nDone \u2014 click any cron job and it pops a modal with the schedule, description, next/last run times. Deploying now.",
+    "timestamp": "2026-02-06T23:59:48.027Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "Skruyu's adding the modal. Tap a job \u2192 see what it does, when it runs, etc. \ud83d\udd27",
+    "timestamp": "2026-02-06T23:58:13.185Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "tool",
+    "content": "sessions_spawn",
+    "timestamp": "2026-02-06T23:58:09.137Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "**Handled by: Flint (Opus)** \u2014 delegating to Skruyu",
+    "timestamp": "2026-02-06T23:58:09.137Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +5m 2026-02-06 18:57 EST] For every cron job, tapping it opens a modal that explains what it does\n[message_id",
+    "timestamp": "2026-02-06T23:57:59.611Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "**Handled by: Skruyu (Grok)** \u2713\n\nMission Control is live: **https://openclaw-dashboard.vercel.app**\n\n- **Activity Feed** \u2014 500 recent events with filters (tool calls, messages, cron jobs)\n- **Calendar...",
+    "timestamp": "2026-02-06T23:52:10.452Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-06T23:51:07.325Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "tool",
+    "content": "exec: ~/clawd/scripts/heartbeat-check.sh",
+    "timestamp": "2026-02-06T23:51:04.510Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-06T23:50:40.044Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "tool",
+    "content": "exec: ~/clawd/scripts/heartbeat-check.sh",
+    "timestamp": "2026-02-06T23:50:37.848Z",
+    "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
+  },
+  {
+    "type": "message",
     "content": "Skruyu's building it. This one's bigger than the CSS tweaks \u2014 might take 10-15 minutes.\n\nHe's setting up:\n- Activity feed from my session logs\n- Calendar view of cron jobs\n- Global search across memor...",
     "timestamp": "2026-02-06T23:47:37.607Z",
     "session": "b26c5905-7ae9-4622-b0c2-9e31ffb255c0"
@@ -2914,89 +2998,5 @@
     "content": "web_fetch",
     "timestamp": "2026-02-05T21:04:42.486Z",
     "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "web_fetch",
-    "timestamp": "2026-02-05T21:04:35.863Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Test if Anthropic API accepts opus-4-6 model name with a minimal request\n# Get API key from enviro",
-    "timestamp": "2026-02-05T21:04:30.929Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Check OpenClaw models list\nopenclaw models list 2>&1 | head -30",
-    "timestamp": "2026-02-05T21:04:20.202Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Try calling opus 4.6 directly via OpenClaw\nopenclaw agent --model anthropic/claude-opus-4-6 --mess",
-    "timestamp": "2026-02-05T21:04:14.968Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Check models list raw\ncurl -s https://api.anthropic.com/v1/models \\\n  -H \"x-api-key: $(cat ~/.open",
-    "timestamp": "2026-02-05T21:04:09.772Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "exec: curl -s https://api.anthropic.com/v1/models \\\n  -H \"x-api-key: $(cat ~/.openclaw/agents/main/agent/a",
-    "timestamp": "2026-02-05T21:04:05.031Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +1m 2026-02-05 16:03 EST] Yes, check that it\u2019s live before though\n[message_id: 4452]",
-    "timestamp": "2026-02-05T21:03:57.488Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "Big upgrade just dropped. Here's what matters for us:\n\n**What's new in Opus 4.6:**\n- Better agentic work \u2014 sustains longer tasks, catches its own mistakes, handles larger codebases\n- **1M token contex...",
-    "timestamp": "2026-02-05T21:02:38.725Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "tool",
-    "content": "web_fetch",
-    "timestamp": "2026-02-05T21:02:20.519Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +16s 2026-02-05 16:02 EST] Before that, what\u2019s the impact on us https://www.anthropic.com/news/claude-opus-4-",
-    "timestamp": "2026-02-05T21:02:14.624Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "HEARTBEAT_OK",
-    "timestamp": "2026-02-05T21:01:57.865Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "HEARTBEAT_OK",
-    "timestamp": "2026-02-05T20:02:03.433Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "Picking up where we left off \u2014 what does a typical week look like? Are there fixed days for certain things (studio, shows, sales, admin)?",
-    "timestamp": "2026-02-05T19:46:49.402Z",
-    "session": "0d94bf21-c559-4253-9ad3-b4d30294edac"
-  },
-  {
-    "type": "message",
-    "content": "NO_REPLY",
-    "timestamp": "2026-02-05T19:02:08.401Z",
-    "session": "5fbf486d-2be4-4aeb-a4f6-33f7386641f9"
   }
 ]

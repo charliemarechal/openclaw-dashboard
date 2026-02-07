@@ -330,6 +330,28 @@ function openJobModal(job) {
         lastRunField.style.display = 'none';
     }
     
+    // Handler (model)
+    const handlerField = document.getElementById('modal-handler-field');
+    if (job.model) {
+        // Show short model name (e.g., "grok-4.1-fast" from "openrouter/x-ai/grok-4.1-fast")
+        const modelParts = job.model.split('/');
+        const shortModel = modelParts[modelParts.length - 1];
+        document.getElementById('modal-handler').textContent = shortModel;
+        document.getElementById('modal-handler').title = job.model; // Full name on hover
+        handlerField.style.display = 'flex';
+    } else {
+        handlerField.style.display = 'none';
+    }
+    
+    // Script
+    const scriptField = document.getElementById('modal-script-field');
+    if (job.script) {
+        document.getElementById('modal-script').textContent = job.script;
+        scriptField.style.display = 'flex';
+    } else {
+        scriptField.style.display = 'none';
+    }
+    
     // Status
     const statusEl = document.getElementById('modal-status');
     statusEl.textContent = job.status || 'unknown';

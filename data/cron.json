@@ -1,137 +1,203 @@
 [
   {
-    "id": "468440a9-6449-4ee1-ae0a-052618b0634e",
-    "name": "Cozy Lights",
-    "schedule": "cron */30 6-23 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T18:59:48.166670"
-    ]
+    "id": "42f60f0c-b12d-4656-8e02-eff71fba8cda",
+    "name": "telegram-watchdog",
+    "schedule": {
+      "kind": "every",
+      "everyMs": 900000
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/telegram-watchdog.sh"
   },
   {
-    "id": "b4a5f253-46c5-4f50-8177-190036c8115a",
-    "name": "QuickBooks \u2192 Notion I...",
-    "schedule": "cron 0 * * * * @ America/New_...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T18:59:48.166706"
-    ]
+    "id": "468440a9-6449-4ee1-ae0a-052618b0634e",
+    "name": "Cozy Lights",
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/30 6-23 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/cozy_lights.py"
   },
   {
     "id": "0c2a7621-093c-45d0-9b32-82b48dcfd4ef",
     "name": "Flint Inbox Monitor",
-    "schedule": "cron */30 * * * * @ America/N...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T18:59:48.166711"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "*/30 * * * *",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/flint_inbox.py"
   },
   {
-    "id": "42f60f0c-b12d-4656-8e02-eff71fba8cda",
-    "name": "telegram-watchdog",
-    "schedule": "every 15m",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T18:59:48.166714"
-    ]
+    "id": "b4a5f253-46c5-4f50-8177-190036c8115a",
+    "name": "QuickBooks \u2192 Notion Invoice Sync",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 * * * *",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/quickbooks_notion_sync.py"
   },
   {
     "id": "144f6072-575c-47ee-8f64-99b0c3b12bc8",
     "name": "Evening News Brief",
-    "schedule": "cron 0 21 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T20:49:48.166717"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 21 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "/Users/flint/clawd/tools/update_brief.py"
   },
   {
     "id": "44e0c13e-0dce-4981-912a-95d2b41ebdcc",
     "name": "Dashboard Data Refresh",
-    "schedule": "cron 0 22 * * * @ America/New...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-06T21:49:48.166720"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 22 * * *",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": ""
   },
   {
     "id": "c47edd6d-e4df-4b25-a503-421f5ca9e03e",
     "name": "Daily UX Bites Scraper",
-    "schedule": "cron 0 7 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-07T06:49:48.166723"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 7 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": ""
   },
   {
     "id": "42deb9a6-d355-4ed6-bbf1-bf145c781e02",
     "name": "Morning News Brief",
-    "schedule": "cron 30 8 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-07T08:49:48.166725"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "30 8 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "/Users/flint/clawd/tools/update_brief.py"
   },
   {
     "id": "4ae8968b-cce4-485b-ab1a-0344f047b644",
     "name": "Newsletter Processor",
-    "schedule": "cron 0 10,18 * * * @ America/...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-07T09:49:48.166728"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 10,18 * * *",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/newsletter_processor.py"
   },
   {
     "id": "1ccf3954-be5e-4542-873c-1d1cbb06bd82",
     "name": "Noon News Brief",
-    "schedule": "cron 0 12 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-07T11:49:48.166730"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 12 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "/Users/flint/clawd/tools/update_brief.py"
   },
   {
     "id": "5e1e9708-1938-48a9-b213-8a8e989b7882",
     "name": "Afternoon News Brief",
-    "schedule": "cron 0 16 * * *",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-07T15:49:48.166732"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 16 * * *"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "/Users/flint/clawd/tools/update_brief.py"
   },
   {
     "id": "e6bae9f7-b305-4f02-aae3-58ebec8a1729",
     "name": "Weekly Competitor Watch",
-    "schedule": "cron 0 9 * * 1",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-09T18:49:48.166735"
-    ]
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 9 * * 1"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": "~/clawd/tools/competitor_watch.py"
   },
   {
     "id": "e3aa7c81-2637-46b4-9eef-8b5925d15fb3",
-    "name": "healthcheck:update-st...",
-    "schedule": "cron 0 10 * * 1 @ America/New...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-09T18:49:48.166738"
-    ]
+    "name": "healthcheck:update-status",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 10 * * 1",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": ""
   },
   {
     "id": "2403dcb5-f1d2-4b2e-9cad-1e5a92445b98",
-    "name": "Pay Property Mgmt Inv...",
-    "schedule": "at 2026-02-10 02:00Z",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-09T18:49:48.166741"
-    ]
+    "name": "Pay Property Mgmt Invoice",
+    "schedule": {
+      "kind": "at",
+      "at": "2026-02-10T02:00:00.000Z"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "",
+    "script": ""
   },
   {
     "id": "a6f252c6-de9a-4379-bea8-a9f88f171af5",
-    "name": "healthcheck:security-...",
-    "schedule": "cron 0 10 * * 3 @ America/New...",
-    "status": "ok",
-    "nextRuns": [
-      "2026-02-11T18:49:48.166742"
-    ]
+    "name": "healthcheck:security-audit",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 10 * * 3",
+      "tz": "America/New_York"
+    },
+    "status": "unknown",
+    "lastRun": "",
+    "nextRuns": [],
+    "model": "openrouter/x-ai/grok-4.1-fast",
+    "script": ""
   }
 ]

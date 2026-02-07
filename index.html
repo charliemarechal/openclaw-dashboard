@@ -526,6 +526,15 @@
             background: rgba(245, 158, 11, 0.2);
             color: var(--warning);
         }
+        
+        .modal-script {
+            font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.85rem;
+            background: var(--bg);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            word-break: break-all;
+        }
 
         @media (max-width: 768px) {
             .header, .tabs, .main {
@@ -646,6 +655,14 @@
                 <div class="modal-field" id="modal-last-run-field">
                     <span class="modal-label">⏮️ Last Run</span>
                     <span class="modal-value" id="modal-last-run">Yesterday at 8:30 AM</span>
+                </div>
+                <div class="modal-field" id="modal-handler-field">
+                    <span class="modal-label">🤖 Handled by</span>
+                    <span class="modal-value" id="modal-handler">Model name</span>
+                </div>
+                <div class="modal-field" id="modal-script-field">
+                    <span class="modal-label">📜 Script</span>
+                    <span class="modal-value modal-script" id="modal-script">/path/to/script.py</span>
                 </div>
                 <div class="modal-field">
                     <span class="modal-label">🔖 Status</span>
