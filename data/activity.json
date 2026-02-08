@@ -2,6 +2,264 @@
   {
     "type": "message",
     "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T01:27:34.755Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: cd ~/clawd && git add -A && git commit -m \"Accrual P&L engine: Notion schedule x QB, venue breakdown",
+    "timestamp": "2026-02-08T01:27:31.648Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: ~/clawd/scripts/heartbeat-check.sh 2>&1",
+    "timestamp": "2026-02-08T01:27:27.975Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Now refresh the dashboard. You should see:\n\n1. **Accrual vs Cash comparison** \u2014 side by side for January\n2. **By Venue breakdown** \u2014 revenue, COGS, and margin per venue\n3. The existing P&L detail belo...",
+    "timestamp": "2026-02-08T01:27:23.598Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "edit",
+    "timestamp": "2026-02-08T01:27:18.720Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: grep -n 'P&L Breakdown\\|// Banks\\|// Trend' /Users/flint/clawd/projects/circensia-dashboard/index.ht",
+    "timestamp": "2026-02-08T01:27:01.387Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Now add the JS to populate these sections. Let me find where the existing JS rendering is:",
+    "timestamp": "2026-02-08T01:27:01.387Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "edit",
+    "timestamp": "2026-02-08T01:26:57.491Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "read",
+    "timestamp": "2026-02-08T01:26:49.261Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "This is the real picture:\n\n**January 2026 (Accrual):**\n- Revenue: $112K\n- COGS (from Notion): **$66K** (not QB's $82K)\n- Gross Profit: **$46K (41% margin)**\n- Expenses: $35K\n- **Net: +$10,863** (not t...",
+    "timestamp": "2026-02-08T01:26:49.261Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: python3 -c \"\nimport json\nwith open('/Users/flint/clawd/projects/circensia-dashboard/data.json') as f",
+    "timestamp": "2026-02-08T01:26:41.583Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Now we're talking. Accrual COGS for January: **$66,045** from Notion schedule (vs QB's $82,104 which includes December work paid in Jan). 23 entries missing rates.",
+    "timestamp": "2026-02-08T01:26:41.583Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T01:26:32.281Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T01:26:29.596Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T01:26:26.977Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: cd ~/clawd/projects/circensia-dashboard && python3 data-fetcher.py 2>&1",
+    "timestamp": "2026-02-08T01:26:13.524Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "That looks fine. Now run it:",
+    "timestamp": "2026-02-08T01:26:13.524Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "read",
+    "timestamp": "2026-02-08T01:26:10.051Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: grep -n 'VENUE_TO_QB' /Users/flint/clawd/projects/circensia-dashboard/data-fetcher.py",
+    "timestamp": "2026-02-08T01:26:07.032Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Also fix the venue mapping \u2014 Skruyu noted 'Mango Tropical' \u2192 'Mango':",
+    "timestamp": "2026-02-08T01:26:07.032Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "edit",
+    "timestamp": "2026-02-08T01:26:02.962Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "All the property references are using internal IDs (`gyvt`, `zUKL`, `HPow`, `ugyQ`) instead of property names. Let me fix them:",
+    "timestamp": "2026-02-08T01:26:02.962Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "read",
+    "timestamp": "2026-02-08T01:25:53.266Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: grep -n 'extract_schedule_entry' /Users/flint/clawd/projects/circensia-dashboard/data-fetcher.py",
+    "timestamp": "2026-02-08T01:25:50.436Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Also need to check the `extract_schedule_entry` function:",
+    "timestamp": "2026-02-08T01:25:50.436Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "edit",
+    "timestamp": "2026-02-08T01:25:47.073Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Found it \u2014 `\"property\": \"gyvt\"` is wrong. Notion filter needs the actual property name, not an internal ID. Should be `\"Date\"`:",
+    "timestamp": "2026-02-08T01:25:47.073Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "read",
+    "timestamp": "2026-02-08T01:25:42.870Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: grep -n 'fetch_notion_schedule' /Users/flint/clawd/projects/circensia-dashboard/data-fetcher.py | he",
+    "timestamp": "2026-02-08T01:25:39.620Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "read",
+    "timestamp": "2026-02-08T01:25:36.771Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: grep -n 'build_accrual' /Users/flint/clawd/projects/circensia-dashboard/data-fetcher.py | head -5",
+    "timestamp": "2026-02-08T01:25:33.883Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Zero entries extracted from Notion. The function isn't pulling data. Let me check Skruyu's code:",
+    "timestamp": "2026-02-08T01:25:33.883Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: python3 -c \"\nimport json\nwith open('/Users/flint/clawd/projects/circensia-dashboard/data.json') as f",
+    "timestamp": "2026-02-08T01:25:30.143Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Accrual engine is built but the COGS from Notion is showing $0 \u2014 something's off with the data extraction. Let me debug and fix before showing you.",
+    "timestamp": "2026-02-08T01:25:30.143Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T01:24:22.940Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Building it now. Skruyu's adding the accrual engine to the dashboard \u2014 it'll cross-reference Notion schedule dates with QB revenue to show where the money actually belongs by month. Should have it in ...",
+    "timestamp": "2026-02-08T01:21:44.621Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "sessions_spawn",
+    "timestamp": "2026-02-08T01:21:38.563Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +14m 2026-02-07 20:21 EST] Yes now\n[message_id: 5500]",
+    "timestamp": "2026-02-08T01:21:03.153Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "No worries \u2014 I'll build the mapping with the 5 confirmed ones and add Mary Lou and Jay's when you have the QB customer names. That's enough to cross-reference most of your Dec-Jan revenue and COGS.\n\nW...",
+    "timestamp": "2026-02-08T01:06:46.218Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +3m 2026-02-07 20:06 EST] They are brand new venues I\u2019m not sure yet\n[message_id: 5498]",
+    "timestamp": "2026-02-08T01:06:37.028Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T01:02:58.335Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Good. Next up: connecting the Notion schedule data to QB so we can build a real accrual P&L. I need to map your venues to QB customer names.\n\nFrom what I've seen in the invoices:\n\n| Venue (Notion) | Q...",
+    "timestamp": "2026-02-08T01:02:52.553Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +58m 2026-02-07 20:02 EST] Yes all good, I see rrrors but very few so keep going and we\u2019ll clean up\n[message_",
+    "timestamp": "2026-02-08T01:02:41.279Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
     "timestamp": "2026-02-08T00:04:21.112Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   },
@@ -2739,264 +2997,6 @@
     "type": "message",
     "content": "Done. Now showing only Chase Checking, TD Checking, and Chase Credit Card. QB posted balances are still stale though ($33K Chase vs real $55K) \u2014 that'll fix itself once you click \"Update\" on the bank ...",
     "timestamp": "2026-02-07T20:30:52.976Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: curl -s -o /dev/null -w \"%{http_code}\" \"http://127.0.0.1:9000/_raw/circensia/\"",
-    "timestamp": "2026-02-07T20:30:48.168Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:30:43.559Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Now the QB posted balances still won't match the real bank balances since the feeds are behind. But at least we're only showing the right accounts. Let me also update the dashboard to show credit card...",
-    "timestamp": "2026-02-07T20:30:43.559Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: cd ~/clawd/projects/circensia-dashboard && python3 data-fetcher.py",
-    "timestamp": "2026-02-07T20:30:32.525Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:30:28.082Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:30:23.068Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +1m 2026-02-07 15:30 EST] yes, ive disabled quickbooks checking moving forward, and Im trying to get everythi",
-    "timestamp": "2026-02-07T20:30:13.183Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Got it \u2014 the \"Bank\" values are the real balances, \"Posted\" is what QB has recorded. So the actual picture is:\n\n- **Chase Credit Card:** $8,577 (that's a liability \u2014 money owed)\n- **Chase Checking:** $...",
-    "timestamp": "2026-02-07T20:28:37.775Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Which bank accounts are actually active? I'll exclude the dead ones and fix the balances.",
-    "timestamp": "2026-02-07T20:28:10.417Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +2m 2026-02-07 15:28 EST] yeah, lots of errors here, all your bank accounts infos are wrong\n[message_id: 5288",
-    "timestamp": "2026-02-07T20:28:07.059Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Circensia dashboard is live. Check it out \u2014 it's the first card in Flint Hub now.\n\nWhat you'll see:\n- **Cash: $212** (that looks wrong \u2014 might be QB accounts not all linked)\n- **Last month profit: $26...",
-    "timestamp": "2026-02-07T20:25:43.956Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: curl -s -o /dev/null -w \"%{http_code}\" \"http://127.0.0.1:9000/_raw/circensia/\"",
-    "timestamp": "2026-02-07T20:25:35.757Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: caddy reload --config /Users/flint/.config/caddy/Caddyfile 2>&1 | tail -2",
-    "timestamp": "2026-02-07T20:25:32.207Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:25:28.140Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:25:21.494Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Add to the app wrapper and hub:",
-    "timestamp": "2026-02-07T20:25:21.494Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:25:15.842Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Now add it to Caddy and the hub:",
-    "timestamp": "2026-02-07T20:25:15.842Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "write: /Users/flint/clawd/projects/circensia-dashboard/index.html",
-    "timestamp": "2026-02-07T20:25:08.664Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Now the dashboard HTML:",
-    "timestamp": "2026-02-07T20:25:08.664Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: mkdir -p ~/clawd/projects/circensia-dashboard && cd ~/clawd/projects/circensia-dashboard && python3 ",
-    "timestamp": "2026-02-07T20:24:17.101Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "write: /Users/flint/clawd/projects/circensia-dashboard/data-fetcher.py",
-    "timestamp": "2026-02-07T20:24:13.504Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Great data. Now let me build the dashboard:",
-    "timestamp": "2026-02-07T20:24:13.504Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Pull comprehensive QB data for the dashboard\npython3 -c \"\nimport json, requests\nfrom datetime impo",
-    "timestamp": "2026-02-07T20:23:40.631Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Perfect. Let me build the Circensia dashboard from QB data. I'll pull:\n\n- **Cash position** (bank balance)\n- **Monthly revenue vs $50K profit target**\n- **Expenses breakdown** (COGS vs operating, recu...",
-    "timestamp": "2026-02-07T20:23:40.631Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +27s 2026-02-07 15:23 EST] yes, start with quickbooks, and lets fix notion, then revisit data sync\n[message_i",
-    "timestamp": "2026-02-07T20:23:25.407Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "So Notion is aspirational but not reliable yet. That means **QuickBooks is the only source of truth right now** for actual money in/out.\n\nFor the dashboard, should I build it purely from QB data first...",
-    "timestamp": "2026-02-07T20:22:56.583Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +13s 2026-02-07 15:22 EST] thats something we need to streamline and standardize\n[message_id: 5279]",
-    "timestamp": "2026-02-07T20:22:51.226Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Is the Notion schedule actually up to date with every show that happened, or does it sometimes lag behind reality?",
-    "timestamp": "2026-02-07T20:22:36.474Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +20s 2026-02-07 15:22 EST] Me\n[message_id: 5277]",
-    "timestamp": "2026-02-07T20:22:33.062Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "OK so they do end up in QB eventually through bank matching. Good \u2014 that means QB should have the full picture.\n\nWhen a show happens, who creates the invoice for the client in QB \u2014 you or Nico?",
-    "timestamp": "2026-02-07T20:22:10.973Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +19s 2026-02-07 15:22 EST] those payments are then matched to contractors in quickbook who then tracks them a",
-    "timestamp": "2026-02-07T20:22:06.610Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Got it \u2014 so performer payments go through Chase directly (not QB), but your and Nico's salaries go through QB payroll.\n\nAre performer payments recorded in QB at all \u2014 like as bills or expenses \u2014 or do...",
-    "timestamp": "2026-02-07T20:21:46.849Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +5s 2026-02-07 15:21 EST] We pay me and nico through quickbooks payroll\n[message_id: 5273]",
-    "timestamp": "2026-02-07T20:21:42.434Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "And are those payments recorded in QuickBooks as expenses, or just done through the bank?",
-    "timestamp": "2026-02-07T20:21:35.632Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +18s 2026-02-07 15:21 EST] We pay performers through Chase direct deposit, or Zelle\n[message_id: 5271]",
-    "timestamp": "2026-02-07T20:21:31.977Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "How do you pay performers \u2014 through QuickBooks, Zelle, cash, or a mix?",
-    "timestamp": "2026-02-07T20:21:12.467Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +30s 2026-02-07 15:21 EST] please one question at a time, always\n[message_id: 5269]",
-    "timestamp": "2026-02-07T20:21:08.923Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "You're right \u2014 a dashboard is only useful if the numbers are accurate. Let me map out the data sources and where gaps could be.\n\n**What we have:**\n\n| Source | What it tracks | Reliable? |\n|--------|--...",
-    "timestamp": "2026-02-07T20:20:37.575Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +1m 2026-02-07 15:20 EST] the thing is, I need to account for all expenses, and match profit with what we owe",
-    "timestamp": "2026-02-07T20:20:18.415Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Already had that realm ID on file \u2014 and good news, the auth already worked! Just pulled all your financials. Check my message above \ud83d\udc46\n\nQuick summary:\n- **Jan profit: $26.4K** (halfway to your $50K tar...",
-    "timestamp": "2026-02-07T20:18:44.579Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 2026-02-07 15:18 EST] 9341453976573028\n[message_id: 5263]",
-    "timestamp": "2026-02-07T20:18:38.508Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "QuickBooks is connected. Here's the snapshot:\n\n**January 2026:**\n- Revenue: **$142,775**\n- COGS (performer pay etc): $81,158\n- Gross profit: $61,617\n- Expenses: $35,210\n- **Net profit: $26,407**\n\n**Ou...",
-    "timestamp": "2026-02-07T20:18:36.092Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   }
 ]
