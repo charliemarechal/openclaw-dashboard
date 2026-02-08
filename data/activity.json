@@ -2,6 +2,18 @@
   {
     "type": "message",
     "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T03:01:36.555Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T02:03:35.225Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "HEARTBEAT_OK",
     "timestamp": "2026-02-08T01:27:34.755Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   },
@@ -2985,18 +2997,6 @@
     "type": "message",
     "content": "Tracking expenses per project/client is the key to knowing your real margins. Here's the cleanest approach:\n\n**QuickBooks has a built-in \"Customer\" field on expenses.** When you categorize a transacti...",
     "timestamp": "2026-02-07T20:38:44.555Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +7m 2026-02-07 15:38 EST] see one issue i have, im current;y categorizing things, and I see \"Revolve\" 254.66$",
-    "timestamp": "2026-02-07T20:38:35.140Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Done. Now showing only Chase Checking, TD Checking, and Chase Credit Card. QB posted balances are still stale though ($33K Chase vs real $55K) \u2014 that'll fix itself once you click \"Update\" on the bank ...",
-    "timestamp": "2026-02-07T20:30:52.976Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   }
 ]
