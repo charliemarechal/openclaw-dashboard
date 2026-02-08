@@ -1,6 +1,156 @@
 [
   {
     "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T00:04:21.112Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: cd ~/clawd && git add -A && git commit -m \"Dedup cleanup: 648 clean entries, zero duplicates\"",
+    "timestamp": "2026-02-08T00:04:17.961Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: ~/clawd/scripts/heartbeat-check.sh 2>&1",
+    "timestamp": "2026-02-08T00:04:14.441Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "All clean. **648 entries** in the Unified Schedule now \u2014 zero duplicates remaining. Went from 828 \u2192 648 after removing ~180 short-name duplicates.\n\nThe 5 entries wrongly archived by the first buggy sc...",
+    "timestamp": "2026-02-08T00:04:09.865Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:04:03.664Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:04:00.808Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:57.481Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:54.415Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: python3 -u -c \"\nimport sys, requests, time, re\nfrom collections import defaultdict\nsys.path.insert(0",
+    "timestamp": "2026-02-08T00:03:41.083Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Done. Also need to restore those 5 entries that got wrongly archived by the first buggy script. Let me handle that and then also check for any remaining duplicates from the earlier failed run (Jan 8 a...",
+    "timestamp": "2026-02-08T00:03:41.083Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:29.070Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:24.695Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:21.504Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:16.380Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:13.676Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:10.615Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:07.258Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:04.070Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:03:01.241Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:02:58.326Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:02:55.312Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:02:52.058Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "process",
+    "timestamp": "2026-02-08T00:02:47.888Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "tool",
+    "content": "exec: python3 -u -c \"\nimport sys, requests, time, re\nfrom collections import defaultdict\nsys.path.insert(0",
+    "timestamp": "2026-02-08T00:02:34.497Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
+    "content": "Script got killed before finishing \u2014 it was on Feb 19. Let me finish the remaining ones:",
+    "timestamp": "2026-02-08T00:02:34.497Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
     "content": "Good progress \u2014 60+ archived so far, all correct (short names removed, full names kept). Still running through Jan and Feb.\n\nHEARTBEAT_OK",
     "timestamp": "2026-02-07T23:59:47.097Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
@@ -2847,156 +2997,6 @@
     "type": "message",
     "content": "QuickBooks is connected. Here's the snapshot:\n\n**January 2026:**\n- Revenue: **$142,775**\n- COGS (performer pay etc): $81,158\n- Gross profit: $61,617\n- Expenses: $35,210\n- **Net profit: $26,407**\n\n**Ou...",
     "timestamp": "2026-02-07T20:18:36.092Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: python3 -c \"\nimport json, requests\n\nwith open('/Users/flint/.config/quickbooks/tokens.json') as f:\n ",
-    "timestamp": "2026-02-07T20:18:22.004Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "We're in. Let me pull your financials:",
-    "timestamp": "2026-02-07T20:18:22.004Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: python3 -c \"\nimport json, requests\n\nwith open('/Users/flint/.config/quickbooks/credentials.json') as",
-    "timestamp": "2026-02-07T20:18:05.416Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +22s 2026-02-07 15:17 EST] XAB11770496065Nx5JeU2TxG84AEsg4eOIqwgPx3SPPEV7XM39\n[message_id: 5262]",
-    "timestamp": "2026-02-07T20:17:56.134Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Just opened the **OAuth Playground** on the Mac mini. In Screen Sharing you should see it. Steps:\n\n1. It should show your app \u2014 select it\n2. Select scope: **Accounting**\n3. Click **Get authorization c...",
-    "timestamp": "2026-02-07T20:17:32.685Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: open \"https://developer.intuit.com/app/developer/playground\"",
-    "timestamp": "2026-02-07T20:17:26.786Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "That's the app overview page, not the auth callback. Let me try the OAuth playground directly:",
-    "timestamp": "2026-02-07T20:17:26.786Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +45s 2026-02-07 15:17 EST] https://developer.intuit.com/appdetail/overview?appId=djQuMTo6OGQzYmJlYTI3Yg:28caf",
-    "timestamp": "2026-02-07T20:17:20.266Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Opened it on the Mac mini. After you authorize, it'll redirect to the Intuit playground page \u2014 the URL in the browser will contain a `code=` parameter. Just copy the **full URL** from the browser addr...",
-    "timestamp": "2026-02-07T20:16:33.116Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: open \"https://appcenter.intuit.com/connect/oauth2?client_id=AB6Fct2k4RVHXEm3Qxvu2uyx1fJWm8GOBoKyNla8",
-    "timestamp": "2026-02-07T20:16:28.177Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: pkill -f qb_auth_server 2>/dev/null\npython3 -c \"\nimport json\nwith open('/Users/flint/.config/quickbo",
-    "timestamp": "2026-02-07T20:16:23.861Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "OK so it redirects to the Intuit playground, not localhost. Different approach \u2014 let me just use the playground directly:",
-    "timestamp": "2026-02-07T20:16:23.861Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-07T20:16:17.059Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "\ud83d\udce8 [Telegram Charlie Mar\u00e9chal id:8413738428 +28s 2026-02-07 15:16 EST] this is what was inside: https://developer.intuit.com/v2/OAuth2Playground/Redirect",
-    "timestamp": "2026-02-07T20:16:12.063Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Needs a trailing slash. Try:\n\n```\nhttp://localhost:8080/callback/\n```\n\nOr check what's already listed there \u2014 we need to match exactly what's registered.",
-    "timestamp": "2026-02-07T20:15:42.224Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Let me know once you've added the redirect URI and I'll reopen the auth page.",
-    "timestamp": "2026-02-07T20:14:52.008Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Restart auth server (previous one consumed a request)\npkill -f qb_auth_server 2>/dev/null; sleep 1",
-    "timestamp": "2026-02-07T20:14:46.099Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "The redirect URI `http://localhost:8080/callback` isn't registered in your QuickBooks app settings. You need to add it.\n\nGo to **https://developer.intuit.com** \u2192 your app \u2192 **Keys & credentials** \u2192 **...",
-    "timestamp": "2026-02-07T20:14:46.099Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Just opened Safari on the Mac mini \u2014 it should show the QuickBooks login page. Can you see it via Screen Sharing? Sign in and authorize, it'll handle the rest automatically.",
-    "timestamp": "2026-02-07T20:12:23.507Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: open \"http://localhost:8080\"",
-    "timestamp": "2026-02-07T20:12:19.919Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "OK server is running. Let me open Safari on the Mac mini for you:",
-    "timestamp": "2026-02-07T20:12:19.919Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: cat /tmp/qb_auth.log",
-    "timestamp": "2026-02-07T20:12:15.541Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Start server persistently with nohup\ncd ~/clawd/tools && nohup python3 qb_auth_server.py > /tmp/qb",
-    "timestamp": "2026-02-07T20:12:10.593Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "message",
-    "content": "Server died. Different approach \u2014 let me just open the browser on the Mac mini directly:",
-    "timestamp": "2026-02-07T20:12:10.593Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "exec: # Check if auth server is even running\ncurl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8080/",
-    "timestamp": "2026-02-07T20:12:05.799Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   }
 ]
