@@ -1,6 +1,12 @@
 [
   {
     "type": "message",
+    "content": "HEARTBEAT_OK",
+    "timestamp": "2026-02-08T08:02:22.340Z",
+    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
+  },
+  {
+    "type": "message",
     "content": "No it's not. $11K cushion with a business doing $100K+/month revenue is thin.\n\nThe core issue: **margins are compressing.** December was 37% gross, January 34%, February tracking 29%. Performer costs ...",
     "timestamp": "2026-02-08T07:47:42.987Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
@@ -2991,12 +2997,6 @@
     "type": "message",
     "content": "Also fix the venue mapping \u2014 Skruyu noted 'Mango Tropical' \u2192 'Mango':",
     "timestamp": "2026-02-08T01:26:07.032Z",
-    "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
-  },
-  {
-    "type": "tool",
-    "content": "edit",
-    "timestamp": "2026-02-08T01:26:02.962Z",
     "session": "fe87e780-7066-438d-aa62-9d2f39dc08e6"
   }
 ]
